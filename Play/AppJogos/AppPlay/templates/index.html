@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+<div class="container-fluid">
+  
+        {% load static %}
+
+
+     
+ 
+    <div class="embed-responsive embed-responsive-16by9"> 
+        <video width="100%" control="false" autoplay="autoplay" loop="loop">
+            <source src="{% static 'video.webm' %}" type="video/mp4">
+        </video>
+    </div> 
+
+
+
+</div>
+
+</div>
+
+
+<div class="container mx-auto">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center">
+
+    {% for ref in jogos %}
+
+    <div class="col mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Jogos</h5>
+          <p> Nome: {{ref.nome}} </p>
+          {% load static %}
+          <img class="w-100 object-fit-contain" src="{% static ref.imagem  %}">
+
+          <h5>Por: R$ {{ref.valor}}</h5>
+
+          <div class="d-grid gap-2">
+            <a href="{% url 'jogos' ref.id %}" class="btn btn-primary ">Detalhe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% empty %}
+<div>Sem jogos</div>
+
+{% endfor %}
+</div>
+</div>
+{% endblock conteudo %}
